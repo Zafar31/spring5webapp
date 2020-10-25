@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Created by jt on 12/23/19.
+ */
 @Entity
 public class Publisher {
 
@@ -12,7 +15,7 @@ public class Publisher {
     private Long id;
 
     private String name;
-    private String Address_line1;
+    private String addressLine1;
     private String city;
     private String state;
     private String zip;
@@ -24,20 +27,39 @@ public class Publisher {
     public Publisher() {
     }
 
-    public Publisher(String name, String address_line1, String city, String state, String zip) {
-        this.name = name;
-        Address_line1 = address_line1;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-    }
-
     public Set<Book> getBooks() {
         return books;
     }
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    @Override
+    public String toString() {
+        return "Publisher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", addressLine1='" + addressLine1 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Publisher publisher = (Publisher) o;
+
+        return id != null ? id.equals(publisher.id) : publisher.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
     public Long getId() {
@@ -56,12 +78,12 @@ public class Publisher {
         this.name = name;
     }
 
-    public String getAddress_line1() {
-        return Address_line1;
+    public String getAddressLine1() {
+        return addressLine1;
     }
 
-    public void setAddress_line1(String address_line1) {
-        Address_line1 = address_line1;
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
     }
 
     public String getCity() {
@@ -86,32 +108,5 @@ public class Publisher {
 
     public void setZip(String zip) {
         this.zip = zip;
-    }
-
-    @Override
-    public String toString() {
-        return "Publisher{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", Address_line1='" + Address_line1 + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zip='" + zip + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Publisher publisher = (Publisher) o;
-
-        return id != null ? id.equals(publisher.id) : publisher.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
     }
 }
